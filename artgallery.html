@@ -1,0 +1,2048 @@
+npm <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GALLERYX — Curated Art • Exclusive Collections • Timeless Creativity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c96e;
+  --gold-pale: #f5e6b8;
+  --obsidian: #0a0a0a;
+  --charcoal: #111111;
+  --dark-2: #1a1a1a;
+  --dark-3: #242424;
+  --dark-4: #2e2e2e;
+  --dark-5: #3a3a3a;
+  --ivory: #f8f4ec;
+  --ivory-dim: #e8e0cc;
+  --smoke: #9a9080;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(201,168,76,0.18);
+  --radius: 2px;
+  --radius-lg: 4px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--obsidian);color:var(--ivory);font-family:'Raleway',sans-serif;overflow-x:hidden;cursor:none}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .1s,width .3s,height .3s,background .3s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .08s,width .3s,height .3s,opacity .3s;opacity:.6}
+body:hover .cursor{opacity:1}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--obsidian)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* TYPOGRAPHY */
+.font-cinzel{font-family:'Cinzel',serif}
+.font-cormorant{font-family:'Cormorant Garamond',serif}
+.text-gold{color:var(--gold)}
+.text-gold-light{color:var(--gold-light)}
+.text-ivory{color:var(--ivory)}
+.text-smoke{color:var(--smoke)}
+
+/* GLASS CARD */
+.glass-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-radius:var(--radius-lg);
+}
+
+/* GOLD BUTTON */
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);
+  background-size:200% 100%;
+  color:var(--obsidian);
+  font-family:'Cinzel',serif;
+  font-size:.72rem;
+  letter-spacing:.2em;
+  font-weight:600;
+  border:none;
+  padding:.7rem 2rem;
+  border-radius:0;
+  text-transform:uppercase;
+  transition:background-position .4s,transform .3s,box-shadow .3s;
+  position:relative;
+  overflow:hidden;
+}
+.btn-gold:hover{
+  background-position:100% 0;
+  color:var(--obsidian);
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(201,168,76,.4);
+}
+.btn-gold-outline{
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  font-family:'Cinzel',serif;
+  font-size:.72rem;
+  letter-spacing:.2em;
+  font-weight:600;
+  padding:.7rem 2rem;
+  border-radius:0;
+  text-transform:uppercase;
+  transition:all .3s;
+}
+.btn-gold-outline:hover{background:var(--gold);color:var(--obsidian)}
+
+/* DIVIDER */
+.luxury-divider{display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
+.luxury-divider::before,.luxury-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.luxury-divider-dot{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+
+/* SECTION HEADING */
+.section-eyebrow{
+  font-family:'Cinzel',serif;
+  font-size:.68rem;
+  letter-spacing:.35em;
+  color:var(--gold);
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:.8rem;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,4vw,3.5rem);
+  font-weight:300;
+  line-height:1.1;
+  color:var(--ivory);
+}
+.section-title em{font-style:italic;color:var(--gold)}
+
+/* ===== NAVBAR ===== */
+#mainNav{
+  background:rgba(10,10,10,.92);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(201,168,76,.1);
+  transition:all .4s;
+  padding:.6rem 0;
+}
+#mainNav.scrolled{background:rgba(6,6,6,.98);border-bottom-color:rgba(201,168,76,.22)}
+.navbar-brand{
+  font-family:'Cinzel',serif;
+  font-size:1.5rem;
+  letter-spacing:.15em;
+  color:var(--gold)!important;
+  font-weight:900;
+  display:flex;
+  flex-direction:column;
+  line-height:1;
+}
+.navbar-brand small{
+  font-size:.42rem;
+  letter-spacing:.5em;
+  color:var(--smoke);
+  font-weight:400;
+  font-family:'Raleway',sans-serif;
+}
+.nav-link{
+  font-family:'Raleway',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--ivory-dim)!important;
+  padding:.4rem .9rem!important;
+  transition:color .3s;
+  position:relative;
+}
+.nav-link::after{
+  content:'';position:absolute;bottom:0;left:.9rem;right:.9rem;height:1px;
+  background:var(--gold);transform:scaleX(0);transition:transform .3s;
+}
+.nav-link:hover,.nav-link.active{color:var(--gold)!important}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+.nav-icon-btn{
+  background:none;border:none;color:var(--ivory-dim);font-size:1.1rem;
+  padding:.3rem .5rem;transition:color .3s;position:relative;
+}
+.nav-icon-btn:hover{color:var(--gold)}
+.nav-badge{
+  position:absolute;top:0;right:0;background:var(--gold);color:var(--obsidian);
+  font-size:.55rem;width:14px;height:14px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-weight:700;
+}
+.navbar-toggler{border-color:var(--gold);color:var(--gold)}
+.navbar-toggler-icon{
+  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23c9a84c' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ===== HERO ===== */
+#hero{
+  min-height:100vh;
+  background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.8) 100%),
+    url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1800&q=80') center/cover no-repeat;
+  display:flex;align-items:center;position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 50%,rgba(201,168,76,.06) 0%,transparent 70%);
+}
+.hero-eyebrow{
+  font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.5em;
+  color:var(--gold);text-transform:uppercase;display:block;margin-bottom:1.5rem;
+  animation:fadeUp .8s .3s both;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,8vw,7rem);font-weight:300;line-height:1.0;
+  color:var(--ivory);animation:fadeUp .8s .5s both;
+}
+.hero-title span{color:var(--gold);font-style:italic}
+.hero-sub{
+  font-family:'Raleway',sans-serif;font-size:.9rem;letter-spacing:.2em;
+  color:var(--smoke);text-transform:uppercase;margin:1.5rem 0 2.5rem;
+  animation:fadeUp .8s .7s both;
+}
+.hero-cta{animation:fadeUp .8s .9s both}
+.hero-scroll{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;
+  color:var(--smoke);animation:fadeUp .8s 1.1s both;
+}
+.hero-scroll-line{width:1px;height:60px;background:linear-gradient(var(--gold),transparent);animation:scrollPulse 2s infinite}
+.hero-stats{
+  display:flex;gap:3rem;margin-top:3rem;
+  animation:fadeUp .8s 1s both;flex-wrap:wrap;
+}
+.hero-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--gold)}
+.hero-stat-label{font-size:.65rem;letter-spacing:.2em;color:var(--smoke);text-transform:uppercase;margin-top:.1rem}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(0.5)}}
+
+/* ===== CAROUSEL ===== */
+#featuredCarousel{background:var(--charcoal)}
+.carousel-item-inner{
+  position:relative;height:70vh;
+  background-size:cover;background-position:center;
+}
+.carousel-item-inner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.2) 60%,transparent 100%);
+}
+.carousel-caption-custom{
+  position:absolute;bottom:0;left:0;top:0;width:50%;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:3rem 4rem;z-index:2;
+}
+.carousel-tag{
+  font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.4em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:.8rem;
+}
+.carousel-art-title{
+  font-family:'Cormorant Garamond',serif;font-size:2.8rem;
+  font-weight:300;color:var(--ivory);line-height:1.1;margin-bottom:.5rem;
+}
+.carousel-artist{font-size:.8rem;letter-spacing:.15em;color:var(--smoke);margin-bottom:1.5rem}
+.carousel-price{
+  font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);margin-bottom:1.5rem;
+}
+.carousel-indicators [data-bs-target]{
+  width:30px;height:2px;border:none;background:var(--smoke);margin:0 4px;
+  transition:width .3s,background .3s;
+}
+.carousel-indicators .active{background:var(--gold);width:50px}
+.carousel-control-prev,.carousel-control-next{
+  width:60px;height:60px;top:50%;transform:translateY(-50%);
+  background:rgba(201,168,76,.1);border:1px solid var(--glass-border);
+  border-radius:0;opacity:1;transition:background .3s;
+  display:flex;align-items:center;justify-content:center;
+}
+.carousel-control-prev{left:1.5rem}
+.carousel-control-next{right:1.5rem}
+.carousel-control-prev:hover,.carousel-control-next:hover{background:rgba(201,168,76,.25)}
+.carousel-control-prev-icon,.carousel-control-next-icon{width:20px;height:20px}
+
+/* ===== ART CARDS ===== */
+#collections{background:var(--charcoal);padding:6rem 0}
+.art-card{
+  background:var(--dark-2);
+  border:1px solid rgba(201,168,76,.08);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:transform .4s,box-shadow .4s,border-color .4s;
+  height:100%;
+}
+.art-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px rgba(201,168,76,.25);
+  border-color:rgba(201,168,76,.25);
+}
+.art-card-img-wrap{position:relative;overflow:hidden;height:280px}
+.art-card-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+.art-card:hover .art-card-img-wrap img{transform:scale(1.08)}
+.art-card-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.6);
+  opacity:0;transition:opacity .3s;
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+}
+.art-card:hover .art-card-overlay{opacity:1}
+.wishlist-btn{
+  background:rgba(201,168,76,.15);border:1px solid var(--gold);
+  color:var(--gold);width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;cursor:pointer;font-size:1rem;
+}
+.wishlist-btn:hover,.wishlist-btn.active{background:var(--gold);color:var(--obsidian)}
+.art-card-body{padding:1.4rem}
+.art-category{
+  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:.4rem;
+}
+.art-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;
+  color:var(--ivory);margin-bottom:.2rem;line-height:1.2;
+}
+.art-artist{font-size:.75rem;color:var(--smoke);letter-spacing:.1em}
+.art-prices{
+  display:flex;align-items:flex-end;gap:1.5rem;
+  margin:1rem 0;padding:1rem 0;
+  border-top:1px solid rgba(201,168,76,.1);
+  border-bottom:1px solid rgba(201,168,76,.1);
+}
+.art-buy-price .label,.art-rent-price .label{
+  font-size:.58rem;letter-spacing:.2em;color:var(--smoke);text-transform:uppercase;
+}
+.art-buy-price .value{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold)}
+.art-rent-price .value{font-family:'Cinzel',serif;font-size:.9rem;color:var(--smoke)}
+.art-card-actions{display:flex;gap:.6rem}
+.art-card-actions .btn{flex:1;font-size:.65rem;letter-spacing:.15em;padding:.55rem .5rem}
+
+/* BADGE */
+.art-badge{
+  position:absolute;top:.8rem;left:.8rem;z-index:2;
+  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;
+  padding:.3rem .7rem;border-radius:0;font-weight:600;
+}
+.badge-featured{background:var(--gold);color:var(--obsidian)}
+.badge-sold{background:var(--dark-5);color:var(--smoke)}
+.badge-new{background:rgba(201,168,76,.15);border:1px solid var(--gold);color:var(--gold)}
+
+/* ===== SEARCH FILTER ===== */
+#filter-bar{background:var(--dark-2);padding:2rem 0;border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)}
+.filter-select,.filter-input{
+  background:var(--dark-3)!important;border:1px solid rgba(201,168,76,.2)!important;
+  color:var(--ivory)!important;font-family:'Raleway',sans-serif;
+  font-size:.75rem;letter-spacing:.1em;border-radius:0!important;padding:.65rem 1rem;
+}
+.filter-select:focus,.filter-input:focus{
+  box-shadow:0 0 0 2px rgba(201,168,76,.25)!important;
+  border-color:var(--gold)!important;
+}
+.filter-select option{background:var(--dark-3)}
+
+/* ===== FEATURES ===== */
+#features{padding:7rem 0;background:var(--obsidian);position:relative;overflow:hidden}
+#features::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.feature-item{text-align:center;padding:2.5rem 2rem}
+.feature-icon-wrap{
+  width:80px;height:80px;margin:0 auto 1.5rem;
+  background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;color:var(--gold);
+  transition:all .4s;
+}
+.feature-item:hover .feature-icon-wrap{
+  background:rgba(201,168,76,.15);
+  box-shadow:0 0 30px rgba(201,168,76,.2);
+  transform:translateY(-4px);
+}
+.feature-title{
+  font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.15em;
+  color:var(--ivory);text-transform:uppercase;margin-bottom:.8rem;
+}
+.feature-text{font-size:.8rem;color:var(--smoke);line-height:1.8;max-width:200px;margin:0 auto}
+
+/* ===== GALLERY ===== */
+#gallery{background:var(--charcoal);padding:6rem 0}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(2,260px);
+  gap:8px;
+}
+.gallery-item{position:relative;overflow:hidden}
+.gallery-item:first-child{grid-row:span 2}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+.gallery-item:hover img{transform:scale(1.12)}
+.gallery-item-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85) 100%);
+  opacity:0;transition:opacity .4s;
+  display:flex;align-items:flex-end;padding:1.5rem;
+}
+.gallery-item:hover .gallery-item-overlay{opacity:1}
+.gallery-item-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ivory);
+}
+.gallery-item-meta{font-size:.7rem;color:var(--gold);letter-spacing:.15em}
+
+/* ===== TESTIMONIALS ===== */
+#testimonials{background:var(--obsidian);padding:7rem 0}
+.testimonial-card{
+  background:var(--dark-2);
+  border:1px solid rgba(201,168,76,.08);
+  padding:2.5rem;height:100%;
+  transition:border-color .4s,transform .4s;
+}
+.testimonial-card:hover{
+  border-color:rgba(201,168,76,.3);
+  transform:translateY(-4px);
+}
+.testimonial-stars{color:var(--gold);font-size:.85rem;margin-bottom:1.2rem}
+.testimonial-text{
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;
+  font-style:italic;color:var(--ivory-dim);line-height:1.8;margin-bottom:1.5rem;
+}
+.testimonial-quote{
+  font-size:3rem;color:rgba(201,168,76,.15);line-height:1;
+  font-family:'Cormorant Garamond',serif;margin-bottom:.5rem;
+}
+.testimonial-avatar{
+  width:50px;height:50px;border-radius:50%;
+  border:2px solid rgba(201,168,76,.3);object-fit:cover;margin-right:.8rem;
+}
+.testimonial-name{font-family:'Cinzel',serif;font-size:.78rem;color:var(--ivory);letter-spacing:.1em}
+.testimonial-location{font-size:.7rem;color:var(--smoke)}
+
+/* ===== ARTISTS ===== */
+#artists{background:var(--charcoal);padding:6rem 0}
+.artist-card{
+  text-align:center;
+  transition:transform .4s;
+}
+.artist-card:hover{transform:translateY(-6px)}
+.artist-img-wrap{
+  width:120px;height:120px;margin:0 auto 1.2rem;
+  border-radius:50%;overflow:hidden;
+  border:2px solid rgba(201,168,76,.2);
+  transition:border-color .4s;
+}
+.artist-card:hover .artist-img-wrap{border-color:var(--gold)}
+.artist-img-wrap img{width:100%;height:100%;object-fit:cover}
+.artist-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ivory);margin-bottom:.2rem}
+.artist-specialty{font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-bottom:.8rem}
+.artist-works{font-size:.75rem;color:var(--smoke)}
+
+/* ===== FORMS & MODALS ===== */
+.luxury-form .form-control,.luxury-form .form-select{
+  background:var(--dark-3);border:1px solid rgba(201,168,76,.15);
+  color:var(--ivory);font-family:'Raleway',sans-serif;
+  font-size:.82rem;border-radius:0;padding:.8rem 1rem;
+  transition:border-color .3s,box-shadow .3s;
+}
+.luxury-form .form-control:focus,.luxury-form .form-select:focus{
+  background:var(--dark-3);color:var(--ivory);
+  border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.15);
+}
+.luxury-form .form-label{
+  font-family:'Cinzel',serif;font-size:.65rem;
+  letter-spacing:.2em;color:var(--smoke);text-transform:uppercase;margin-bottom:.4rem;
+}
+.luxury-form .form-control::placeholder{color:var(--dark-5)}
+.modal-content{
+  background:var(--dark-2);
+  border:1px solid rgba(201,168,76,.2);
+  border-radius:0;
+}
+.modal-header{
+  border-bottom:1px solid rgba(201,168,76,.1);
+  padding:1.5rem 2rem;
+}
+.modal-title{
+  font-family:'Cinzel',serif;letter-spacing:.15em;color:var(--gold);font-size:.9rem;
+}
+.modal-body{padding:2rem}
+.modal-footer{border-top:1px solid rgba(201,168,76,.1);padding:1.2rem 2rem}
+.btn-close{filter:invert(1) sepia(1) saturate(0.5) hue-rotate(0deg)}
+
+/* ===== DASHBOARD ===== */
+.dashboard-sidebar{
+  background:var(--dark-2);
+  border:1px solid rgba(201,168,76,.1);
+  padding:2rem;height:100%;
+}
+.dashboard-nav-item{
+  display:flex;align-items:center;gap:.8rem;
+  padding:.8rem 1rem;
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--smoke);cursor:pointer;
+  border-left:2px solid transparent;
+  transition:all .3s;margin-bottom:.2rem;
+  font-family:'Cinzel',serif;
+}
+.dashboard-nav-item:hover,.dashboard-nav-item.active{
+  color:var(--gold);border-left-color:var(--gold);
+  background:rgba(201,168,76,.05);
+}
+.dashboard-content{
+  background:var(--dark-2);
+  border:1px solid rgba(201,168,76,.1);
+  padding:2rem;
+}
+.stat-card{
+  background:var(--dark-3);
+  border:1px solid rgba(201,168,76,.1);
+  padding:1.5rem;text-align:center;
+}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--gold)}
+.stat-label{font-size:.65rem;letter-spacing:.2em;color:var(--smoke);text-transform:uppercase}
+
+/* ===== CART ===== */
+.cart-item{
+  background:var(--dark-3);
+  border:1px solid rgba(201,168,76,.08);
+  padding:1.2rem;display:flex;align-items:center;gap:1.2rem;
+  margin-bottom:.8rem;transition:border-color .3s;
+}
+.cart-item:hover{border-color:rgba(201,168,76,.2)}
+.cart-item-img{width:80px;height:80px;object-fit:cover;flex-shrink:0}
+.cart-item-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ivory)}
+.cart-item-artist{font-size:.7rem;color:var(--smoke)}
+.cart-item-price{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);white-space:nowrap}
+.qty-btn{
+  background:var(--dark-4);border:1px solid rgba(201,168,76,.2);
+  color:var(--ivory);width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .3s;font-size:.85rem;
+}
+.qty-btn:hover{background:var(--gold);color:var(--obsidian);border-color:var(--gold)}
+.qty-value{
+  background:var(--dark-3);border-top:1px solid rgba(201,168,76,.2);
+  border-bottom:1px solid rgba(201,168,76,.2);
+  width:40px;height:30px;display:flex;align-items:center;
+  justify-content:center;font-size:.85rem;color:var(--ivory);
+}
+
+/* ===== CHECKOUT ===== */
+.order-summary{
+  background:var(--dark-3);
+  border:1px solid rgba(201,168,76,.1);
+  padding:1.5rem;
+}
+.order-summary-title{
+  font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;
+  padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.1);
+}
+.order-line{
+  display:flex;justify-content:space-between;
+  font-size:.82rem;color:var(--smoke);margin-bottom:.7rem;
+}
+.order-total{
+  display:flex;justify-content:space-between;
+  font-family:'Cinzel',serif;color:var(--gold);
+  font-size:1rem;padding-top:.8rem;
+  border-top:1px solid rgba(201,168,76,.2);margin-top:.5rem;
+}
+
+/* ===== TABLE ===== */
+.luxury-table{color:var(--ivory-dim)}
+.luxury-table th{
+  font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;
+  color:var(--gold);text-transform:uppercase;
+  border-bottom:1px solid rgba(201,168,76,.2)!important;
+  background:var(--dark-3);padding:.9rem 1rem;
+}
+.luxury-table td{
+  font-size:.8rem;color:var(--smoke);vertical-align:middle;
+  border-bottom:1px solid rgba(255,255,255,.04)!important;
+  padding:.9rem 1rem;
+}
+.luxury-table tbody tr{background:var(--dark-2);transition:background .2s}
+.luxury-table tbody tr:hover{background:var(--dark-3)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--obsidian);padding:5rem 0 2rem;border-top:1px solid rgba(201,168,76,.1)}
+.footer-brand{
+  font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);
+  letter-spacing:.15em;font-weight:900;margin-bottom:.5rem;
+}
+.footer-tagline{font-size:.7rem;letter-spacing:.3em;color:var(--smoke)}
+.footer-heading{
+  font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;
+}
+.footer-link{
+  display:block;color:var(--smoke);font-size:.78rem;text-decoration:none;
+  letter-spacing:.08em;padding:.3rem 0;transition:color .3s;
+}
+.footer-link:hover{color:var(--gold)}
+.social-link{
+  display:inline-flex;width:38px;height:38px;
+  border:1px solid rgba(201,168,76,.2);
+  align-items:center;justify-content:center;
+  color:var(--smoke);font-size:1rem;
+  transition:all .3s;text-decoration:none;margin-right:.4rem;
+}
+.social-link:hover{background:var(--gold);border-color:var(--gold);color:var(--obsidian)}
+.footer-bottom{
+  border-top:1px solid rgba(201,168,76,.08);
+  padding-top:1.5rem;margin-top:3rem;
+  font-size:.72rem;color:var(--dark-5);letter-spacing:.1em;text-align:center;
+}
+.footer-contact-item{
+  display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.9rem;
+  font-size:.78rem;color:var(--smoke);
+}
+.footer-contact-icon{color:var(--gold);margin-top:.05rem;flex-shrink:0}
+
+/* ===== SECTIONS LAYOUT ===== */
+.section-header{text-align:center;margin-bottom:4rem}
+.section-py{padding:6rem 0}
+.section-py-sm{padding:4rem 0}
+.page-section{display:none}
+.page-section.active{display:block}
+
+/* ===== SUCCESS MODAL ===== */
+.success-icon{
+  width:80px;height:80px;margin:0 auto;
+  background:rgba(201,168,76,.1);border:2px solid var(--gold);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:2rem;color:var(--gold);
+}
+
+/* ===== WISHLIST GRID ===== */
+.wishlist-empty{
+  text-align:center;padding:5rem 2rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-style:italic;color:var(--smoke);
+}
+
+/* ===== ANIMATE ON SCROLL ===== */
+.aos-fade{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.aos-fade.visible{opacity:1;transform:translateY(0)}
+.aos-fade-left{opacity:0;transform:translateX(-24px);transition:opacity .7s,transform .7s}
+.aos-fade-left.visible{opacity:1;transform:translateX(0)}
+.aos-fade-right{opacity:0;transform:translateX(24px);transition:opacity .7s,transform .7s}
+.aos-fade-right.visible{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}
+.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
+.delay-5{transition-delay:.5s}
+
+/* ===== NOTIFICATION TOAST ===== */
+.toast-container{position:fixed;bottom:2rem;right:2rem;z-index:9999}
+.luxury-toast{
+  background:var(--dark-2);border:1px solid rgba(201,168,76,.3);
+  color:var(--ivory);border-radius:0;min-width:260px;
+}
+.toast-body{font-size:.8rem;color:var(--smoke);display:flex;align-items:center;gap:.6rem}
+.toast-body i{color:var(--gold);font-size:1rem}
+
+/* RENTAL FORM SECTION */
+#rentalSection{background:var(--dark-2);padding:6rem 0}
+#rentFormBg{
+  background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,transparent 60%),var(--dark-2);
+  border:1px solid rgba(201,168,76,.12);padding:3rem;
+}
+
+/* PAYMENT STEPS */
+.payment-step{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 0;border-bottom:1px solid rgba(201,168,76,.06);
+  font-size:.82rem;color:var(--smoke);
+}
+.payment-step i{color:var(--gold);font-size:1.1rem;width:20px;text-align:center}
+
+/* CHECKBOX */
+.form-check-input{
+  background-color:var(--dark-4);border-color:rgba(201,168,76,.3)!important;
+}
+.form-check-input:checked{background-color:var(--gold);border-color:var(--gold)!important}
+.form-check-label{font-size:.78rem;color:var(--smoke)}
+
+/* NAV PILLS FOR TABS */
+.luxury-tabs .nav-link{
+  background:var(--dark-3);color:var(--smoke);
+  border:1px solid rgba(201,168,76,.08)!important;
+  border-radius:0;font-family:'Cinzel',serif;font-size:.68rem;
+  letter-spacing:.15em;text-transform:uppercase;margin-right:.4rem;
+  padding:.6rem 1.2rem;
+}
+.luxury-tabs .nav-link.active{
+  background:var(--gold)!important;color:var(--obsidian)!important;
+  border-color:var(--gold)!important;
+}
+.tab-content{margin-top:2rem}
+
+/* PROGRESS BAR */
+.progress{background:var(--dark-4);border-radius:0;height:4px}
+.progress-bar{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+
+/* HERO VIDEO BG ALTERNATIVE */
+.hero-pattern{
+  position:absolute;top:0;right:0;width:40%;height:100%;
+  background:
+    linear-gradient(135deg,rgba(201,168,76,.03) 25%,transparent 25%) -20px 0,
+    linear-gradient(225deg,rgba(201,168,76,.03) 25%,transparent 25%) -20px 0,
+    linear-gradient(315deg,rgba(201,168,76,.03) 25%,transparent 25%),
+    linear-gradient(45deg,rgba(201,168,76,.03) 25%,transparent 25%);
+  background-size:40px 40px;
+  opacity:.5;
+}
+
+/* SECTION INDICATOR */
+.section-indicator{
+  width:3px;height:40px;background:var(--gold);
+  display:inline-block;margin-right:1rem;vertical-align:middle;
+}
+
+/* PRICE BADGE */
+.price-tag{
+  display:inline-block;
+  font-family:'Cinzel',serif;
+  font-size:.75rem;
+  color:var(--gold);
+  letter-spacing:.1em;
+}
+
+/* CHIP FILTERS */
+.chip-filter{
+  display:inline-flex;align-items:center;
+  padding:.35rem .9rem;
+  border:1px solid rgba(201,168,76,.2);
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--smoke);cursor:pointer;transition:all .3s;
+  font-family:'Cinzel',serif;margin:.2rem;
+}
+.chip-filter:hover,.chip-filter.active{
+  background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold);
+}
+
+/* BREADCRUMB */
+.luxury-breadcrumb{
+  font-size:.7rem;letter-spacing:.15em;color:var(--smoke);margin-bottom:2rem;
+}
+.luxury-breadcrumb a{color:var(--gold);text-decoration:none}
+.luxury-breadcrumb a:hover{text-decoration:underline}
+
+@media(max-width:768px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+  .gallery-item:first-child{grid-row:span 1}
+  .carousel-caption-custom{width:100%;background:linear-gradient(transparent,rgba(0,0,0,.8));justify-content:flex-end;padding:2rem}
+  .carousel-item-inner{height:50vh}
+  .hero-stats{gap:1.5rem}
+}
+@media(max-width:576px){
+  .gallery-grid{grid-template-columns:1fr}
+  .hero-title{font-size:2.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TOAST NOTIFICATIONS -->
+<div class="toast-container">
+  <div id="wishlistToast" class="toast luxury-toast" role="alert">
+    <div class="toast-body"><i class="bi bi-heart-fill"></i><span id="toastMsg">Added to wishlist</span></div>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="#" onclick="showSection('home')">
+      GALLERYX
+      <small>Curated Art · Exclusive Collections</small>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link active" href="#" onclick="showSection('home')">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('about')">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('collections')">Collections</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('buy')">Buy Art</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('rent')">Rent Art</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('artists')">Artists</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('contact')">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 mt-2 mt-lg-0">
+        <button class="nav-icon-btn" onclick="showSection('wishlist')" title="Wishlist">
+          <i class="bi bi-heart"></i>
+          <span class="nav-badge" id="wishlistCount">0</span>
+        </button>
+        <button class="nav-icon-btn" onclick="showSection('cart')" title="Cart">
+          <i class="bi bi-bag"></i>
+          <span class="nav-badge" id="cartCount">0</span>
+        </button>
+        <button class="nav-icon-btn" onclick="showSection('dashboard')" title="Profile">
+          <i class="bi bi-person-circle"></i>
+        </button>
+        <button class="btn-gold-outline ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        <button class="btn-gold ms-1" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================= HOME SECTION ============================= -->
+<div id="home" class="page-section active">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+  <div class="container position-relative z-2" style="padding-top:5rem">
+    <div class="row">
+      <div class="col-lg-7">
+        <span class="hero-eyebrow">Est. 2020 · Premium Art Destination</span>
+        <h1 class="hero-title">Where Art<br><span>Meets</span><br>Eternity</h1>
+        <p class="hero-sub">Curated Collections · Exclusive Masterpieces</p>
+        <div class="hero-cta d-flex gap-3 flex-wrap">
+          <button class="btn-gold px-4 py-3" onclick="showSection('collections')">Explore Collection</button>
+          <button class="btn-gold-outline px-4 py-3" onclick="document.getElementById('inquiryModal').querySelector('[data-bs-toggle]')?.click(); new bootstrap.Modal(document.getElementById('inquiryModal')).show()">Private Inquiry</button>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-num">2,400+</div><div class="hero-stat-label">Artworks</div></div>
+          <div><div class="hero-stat-num">180+</div><div class="hero-stat-label">Artists</div></div>
+          <div><div class="hero-stat-num">94</div><div class="hero-stat-label">Countries</div></div>
+          <div><div class="hero-stat-num">12K+</div><div class="hero-stat-label">Collectors</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- FEATURED CAROUSEL -->
+<section id="featuredCarousel">
+  <div id="artCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#artCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#artCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#artCarousel" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#artCarousel" data-bs-slide-to="3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="carousel-item-inner" style="background-image:url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1800&q=80')">
+          <div class="carousel-caption-custom">
+            <span class="carousel-tag">Featured Work · Abstract</span>
+            <h2 class="carousel-art-title">Cascade<br>of Dreams</h2>
+            <div class="carousel-artist">by Elena Vasiliev</div>
+            <div class="carousel-price">$48,000</div>
+            <div class="d-flex gap-2">
+              <button class="btn-gold" onclick="addToCart('Cascade of Dreams','Elena Vasiliev',48000)">Acquire Now</button>
+              <button class="btn-gold-outline" onclick="openRental('Cascade of Dreams')">Rent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-item-inner" style="background-image:url('https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=1800&q=80')">
+          <div class="carousel-caption-custom">
+            <span class="carousel-tag">New Arrival · Contemporary</span>
+            <h2 class="carousel-art-title">Solitude<br>in Gold</h2>
+            <div class="carousel-artist">by Marco Bellini</div>
+            <div class="carousel-price">$62,500</div>
+            <div class="d-flex gap-2">
+              <button class="btn-gold" onclick="addToCart('Solitude in Gold','Marco Bellini',62500)">Acquire Now</button>
+              <button class="btn-gold-outline" onclick="openRental('Solitude in Gold')">Rent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-item-inner" style="background-image:url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1800&q=80')">
+          <div class="carousel-caption-custom">
+            <span class="carousel-tag">Exclusive · Oil on Canvas</span>
+            <h2 class="carousel-art-title">Midnight<br>Baroque</h2>
+            <div class="carousel-artist">by Aiko Tanaka</div>
+            <div class="carousel-price">$91,000</div>
+            <div class="d-flex gap-2">
+              <button class="btn-gold" onclick="addToCart('Midnight Baroque','Aiko Tanaka',91000)">Acquire Now</button>
+              <button class="btn-gold-outline" onclick="openRental('Midnight Baroque')">Rent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-item-inner" style="background-image:url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1800&q=80')">
+          <div class="carousel-caption-custom">
+            <span class="carousel-tag">Sculptor · Modern</span>
+            <h2 class="carousel-art-title">Eternal<br>Bloom</h2>
+            <div class="carousel-artist">by Seun Adeyemi</div>
+            <div class="carousel-price">$33,800</div>
+            <div class="d-flex gap-2">
+              <button class="btn-gold" onclick="addToCart('Eternal Bloom','Seun Adeyemi',33800)">Acquire Now</button>
+              <button class="btn-gold-outline" onclick="openRental('Eternal Bloom')">Rent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#artCarousel" data-bs-slide="prev">
+      <i class="bi bi-chevron-left" style="font-size:1.3rem;color:var(--gold)"></i>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#artCarousel" data-bs-slide="next">
+      <i class="bi bi-chevron-right" style="font-size:1.3rem;color:var(--gold)"></i>
+    </button>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-header aos-fade">
+      <span class="section-eyebrow">Why Choose Galleryx</span>
+      <h2 class="section-title">The <em>Pinnacle</em> of Art Commerce</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 aos-fade delay-1">
+        <div class="feature-item">
+          <div class="feature-icon-wrap"><i class="bi bi-patch-check-fill"></i></div>
+          <div class="feature-title">Verified Authenticity</div>
+          <div class="feature-text">Every artwork is certified genuine with blockchain provenance documentation.</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 aos-fade delay-2">
+        <div class="feature-item">
+          <div class="feature-icon-wrap"><i class="bi bi-shield-lock-fill"></i></div>
+          <div class="feature-title">Secure Transactions</div>
+          <div class="feature-text">Bank-grade encryption and escrow services for every purchase and rental.</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 aos-fade delay-3">
+        <div class="feature-item">
+          <div class="feature-icon-wrap"><i class="bi bi-globe2"></i></div>
+          <div class="feature-title">Global Delivery</div>
+          <div class="feature-text">White-glove art handling and delivery to 94 countries worldwide.</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 aos-fade delay-4">
+        <div class="feature-item">
+          <div class="feature-icon-wrap"><i class="bi bi-stars"></i></div>
+          <div class="feature-title">Exclusive Collections</div>
+          <div class="feature-text">Access to limited-edition works and private collector auctions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section-py">
+  <div class="container">
+    <div class="section-header aos-fade">
+      <span class="section-eyebrow">Visual Gallery</span>
+      <h2 class="section-title">A <em>World</em> of Art</h2>
+    </div>
+    <div class="gallery-grid aos-fade">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=600&q=80" alt="Art 1"/>
+        <div class="gallery-item-overlay">
+          <div><div class="gallery-item-title">Abstract Whisper</div><div class="gallery-item-meta">Elena Vasiliev · 2023</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&q=80" alt="Art 2"/>
+        <div class="gallery-item-overlay">
+          <div><div class="gallery-item-title">City Dreams</div><div class="gallery-item-meta">Marco Bellini · 2024</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80" alt="Art 3"/>
+        <div class="gallery-item-overlay">
+          <div><div class="gallery-item-title">Golden Hours</div><div class="gallery-item-meta">Aiko Tanaka · 2023</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80" alt="Art 4"/>
+        <div class="gallery-item-overlay">
+          <div><div class="gallery-item-title">Floral Epoch</div><div class="gallery-item-meta">Seun Adeyemi · 2024</div></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80" alt="Art 5"/>
+        <div class="gallery-item-overlay">
+          <div><div class="gallery-item-title">Deep Sea</div><div class="gallery-item-meta">Priya Nair · 2022</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header aos-fade">
+      <span class="section-eyebrow">Collector Voices</span>
+      <h2 class="section-title">Stories from <em>Our Patrons</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 aos-fade delay-1">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">GALLERYX transformed my approach to collecting. The curation is exquisite, and the entire experience feels like dealing with a Parisian gallery house.</div>
+          <div class="d-flex align-items-center mt-3">
+            <img src="https://i.pravatar.cc/80?img=1" class="testimonial-avatar" alt=""/>
+            <div><div class="testimonial-name">James Harrington</div><div class="testimonial-location">New York · Collector since 2021</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 aos-fade delay-2">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">The rental programme allowed me to experience museum-quality works in my home. The white-glove delivery was beyond anything I expected.</div>
+          <div class="d-flex align-items-center mt-3">
+            <img src="https://i.pravatar.cc/80?img=5" class="testimonial-avatar" alt=""/>
+            <div><div class="testimonial-name">Sophia Lindqvist</div><div class="testimonial-location">Stockholm · Design Director</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 aos-fade delay-3">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-text">Investing in art has never been this seamless. The authentication certificates and provenance records give me complete confidence.</div>
+          <div class="d-flex align-items-center mt-3">
+            <img src="https://i.pravatar.cc/80?img=8" class="testimonial-avatar" alt=""/>
+            <div><div class="testimonial-name">Raj Mehta</div><div class="testimonial-location">Mumbai · Art Investor</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end #home -->
+
+<!-- ============================= COLLECTIONS SECTION ============================= -->
+<div id="collections" class="page-section" style="padding-top:90px;background:var(--charcoal)">
+
+  <!-- FILTER BAR -->
+  <div id="filter-bar">
+    <div class="container">
+      <div class="row g-2 align-items-center">
+        <div class="col-lg-4 col-md-6">
+          <input type="text" class="form-control filter-input" id="searchInput" placeholder="Search artworks, artists..."/>
+        </div>
+        <div class="col-lg-2 col-md-3">
+          <select class="form-select filter-select" id="categoryFilter">
+            <option value="">All Categories</option>
+            <option>Abstract</option>
+            <option>Contemporary</option>
+            <option>Impressionism</option>
+            <option>Photography</option>
+            <option>Sculpture</option>
+            <option>Digital Art</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-md-3">
+          <select class="form-select filter-select" id="artistFilter">
+            <option value="">All Artists</option>
+            <option>Elena Vasiliev</option>
+            <option>Marco Bellini</option>
+            <option>Aiko Tanaka</option>
+            <option>Seun Adeyemi</option>
+            <option>Priya Nair</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-md-3">
+          <select class="form-select filter-select" id="typeFilter">
+            <option value="">Buy &amp; Rent</option>
+            <option>Buy Only</option>
+            <option>Rent Only</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-md-3">
+          <select class="form-select filter-select" id="priceFilter">
+            <option value="">Any Price</option>
+            <option>Under $10K</option>
+            <option>$10K – $50K</option>
+            <option>$50K – $100K</option>
+            <option>Over $100K</option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-2">
+        <span class="chip-filter active" onclick="toggleChip(this)">All</span>
+        <span class="chip-filter" onclick="toggleChip(this)">Abstract</span>
+        <span class="chip-filter" onclick="toggleChip(this)">Contemporary</span>
+        <span class="chip-filter" onclick="toggleChip(this)">Oil</span>
+        <span class="chip-filter" onclick="toggleChip(this)">Photography</span>
+        <span class="chip-filter" onclick="toggleChip(this)">Sculpture</span>
+        <span class="chip-filter" onclick="toggleChip(this)">New Arrivals</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <div class="section-header">
+      <span class="section-eyebrow">Our Gallery</span>
+      <h2 class="section-title">Curated <em>Collections</em></h2>
+    </div>
+    <div class="row g-4" id="artGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================= BUY SECTION ============================= -->
+<div id="buy" class="page-section" style="padding-top:90px;background:var(--charcoal)">
+  <div class="container py-5">
+    <div class="section-header">
+      <span class="section-eyebrow">Acquire</span>
+      <h2 class="section-title">Buy <em>Art</em></h2>
+    </div>
+    <div class="row g-4" id="buyGrid"></div>
+  </div>
+</div>
+
+<!-- ============================= RENT SECTION ============================= -->
+<div id="rent" class="page-section" style="padding-top:90px">
+  <section id="rentalSection">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 aos-fade-left">
+          <span class="section-eyebrow">Art Rental Programme</span>
+          <h2 class="section-title" style="margin-bottom:1rem">Experience<br><em>Art at Home</em></h2>
+          <p style="color:var(--smoke);line-height:1.9;font-size:.88rem;margin-bottom:2rem">
+            Our exclusive rental programme lets you live with museum-quality art for weeks or months. All rentals include professional installation, insurance, and a dedicated art consultant.
+          </p>
+          <div class="d-flex flex-column gap-3" style="font-size:.82rem">
+            <div class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle-fill text-gold"></i><span style="color:var(--smoke)">Minimum 1-month rental periods</span></div>
+            <div class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle-fill text-gold"></i><span style="color:var(--smoke)">Full insurance coverage included</span></div>
+            <div class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle-fill text-gold"></i><span style="color:var(--smoke)">Professional installation service</span></div>
+            <div class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle-fill text-gold"></i><span style="color:var(--smoke)">Apply rental fees toward purchase</span></div>
+          </div>
+        </div>
+        <div class="col-lg-6 aos-fade-right">
+          <div id="rentFormBg">
+            <h3 style="font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem">Rental Enquiry Form</h3>
+            <form class="luxury-form" onsubmit="submitRental(event)">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="form-control" placeholder="Your name"/>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" placeholder="+91 98765 43210"/>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Preferred Artwork</label>
+                  <select class="form-select">
+                    <option>Select an artwork...</option>
+                    <option>Cascade of Dreams — $480/mo</option>
+                    <option>Solitude in Gold — $625/mo</option>
+                    <option>Midnight Baroque — $910/mo</option>
+                    <option>Eternal Bloom — $338/mo</option>
+                    <option>Velvet Horizon — $520/mo</option>
+                    <option>Crimson Tide — $290/mo</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Rental Duration</label>
+                  <select class="form-select">
+                    <option>1 Month</option>
+                    <option>3 Months</option>
+                    <option>6 Months</option>
+                    <option>12 Months</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Delivery City</label>
+                  <input type="text" class="form-control" placeholder="Mumbai, Delhi..."/>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message</label>
+                  <textarea class="form-control" rows="3" placeholder="Any special requirements..."></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn-gold w-100 py-3">Submit Rental Request</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================= ARTISTS SECTION ============================= -->
+<div id="artists" class="page-section" style="padding-top:90px">
+  <section style="background:var(--charcoal);padding:5rem 0">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Our Roster</span>
+        <h2 class="section-title">Featured <em>Artists</em></h2>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="artist-card">
+            <div class="artist-img-wrap"><img src="https://i.pravatar.cc/150?img=11" alt=""/></div>
+            <div class="artist-name">Elena Vasiliev</div>
+            <div class="artist-specialty">Abstract · Oil</div>
+            <div class="artist-works">47 works</div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="artist-card">
+            <div class="artist-img-wrap"><img src="https://i.pravatar.cc/150?img=13" alt=""/></div>
+            <div class="artist-name">Marco Bellini</div>
+            <div class="artist-specialty">Contemporary</div>
+            <div class="artist-works">63 works</div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="artist-card">
+            <div class="artist-img-wrap"><img src="https://i.pravatar.cc/150?img=20" alt=""/></div>
+            <div class="artist-name">Aiko Tanaka</div>
+            <div class="artist-specialty">Impressionism</div>
+            <div class="artist-works">39 works</div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="artist-card">
+            <div class="artist-img-wrap"><img src="https://i.pravatar.cc/150?img=17" alt=""/></div>
+            <div class="artist-name">Seun Adeyemi</div>
+            <div class="artist-specialty">Sculpture</div>
+            <div class="artist-works">28 works</div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="artist-card">
+            <div class="artist-img-wrap"><img src="https://i.pravatar.cc/150?img=23" alt=""/></div>
+            <div class="artist-name">Priya Nair</div>
+            <div class="artist-specialty">Photography</div>
+            <div class="artist-works">55 works</div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="artist-card">
+            <div class="artist-img-wrap"><img src="https://i.pravatar.cc/150?img=32" alt=""/></div>
+            <div class="artist-name">Luca Ferrara</div>
+            <div class="artist-specialty">Digital Art</div>
+            <div class="artist-works">72 works</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================= ABOUT SECTION ============================= -->
+<div id="about" class="page-section" style="padding-top:90px">
+  <section style="background:var(--charcoal);padding:6rem 0">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5">
+          <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80" class="img-fluid" style="border:1px solid rgba(201,168,76,.2)" alt="Gallery Interior"/>
+        </div>
+        <div class="col-lg-7">
+          <span class="section-eyebrow">Our Story</span>
+          <h2 class="section-title" style="margin-bottom:1.5rem">Art is a <em>Living</em><br>Conversation</h2>
+          <div class="luxury-divider"><div class="luxury-divider-dot"></div></div>
+          <p style="color:var(--smoke);line-height:2;font-size:.88rem;margin-bottom:1.2rem">Founded in 2020, GALLERYX was born from the conviction that extraordinary art should be accessible — not only to institutions, but to every discerning collector, interior visionary, and art enthusiast.</p>
+          <p style="color:var(--smoke);line-height:2;font-size:.88rem;margin-bottom:2rem">We work directly with a curated roster of 180+ artists from 94 countries, ensuring every work is authenticated, insured, and delivered with care.</p>
+          <div class="row g-3">
+            <div class="col-6"><div class="stat-card"><div class="stat-num">180+</div><div class="stat-label">Artists</div></div></div>
+            <div class="col-6"><div class="stat-card"><div class="stat-num">2,400+</div><div class="stat-label">Artworks</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================= CONTACT SECTION ============================= -->
+<div id="contact" class="page-section" style="padding-top:90px">
+  <section style="background:var(--charcoal);padding:6rem 0">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2 class="section-title">Contact <em>Us</em></h2>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="d-flex flex-column gap-4">
+            <div class="footer-contact-item"><i class="bi bi-geo-alt-fill footer-contact-icon"></i><div><div style="color:var(--ivory);font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;margin-bottom:.2rem">VISIT US</div>14 Rue de l'Art, Level 5<br>Mumbai 400001, India</div></div>
+            <div class="footer-contact-item"><i class="bi bi-telephone-fill footer-contact-icon"></i><div><div style="color:var(--ivory);font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;margin-bottom:.2rem">CALL US</div>+91 22 4000 8888</div></div>
+            <div class="footer-contact-item"><i class="bi bi-envelope-fill footer-contact-icon"></i><div><div style="color:var(--ivory);font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;margin-bottom:.2rem">WRITE TO US</div>concierge@galleryx.art</div></div>
+            <div class="footer-contact-item"><i class="bi bi-clock-fill footer-contact-icon"></i><div><div style="color:var(--ivory);font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;margin-bottom:.2rem">GALLERY HOURS</div>Tue–Sun · 10:00 AM – 7:00 PM</div></div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div id="rentFormBg">
+            <form class="luxury-form" onsubmit="submitContact(event)">
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label">Name</label><input type="text" class="form-control" placeholder="Your name"/></div>
+                <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="your@email.com"/></div>
+                <div class="col-12"><label class="form-label">Subject</label><input type="text" class="form-control" placeholder="Inquiry about..."/></div>
+                <div class="col-12"><label class="form-label">Message</label><textarea class="form-control" rows="5" placeholder="Your message..."></textarea></div>
+                <div class="col-12"><button type="submit" class="btn-gold py-3 px-5">Send Message</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================= WISHLIST SECTION ============================= -->
+<div id="wishlist" class="page-section" style="padding-top:90px;background:var(--charcoal);min-height:100vh">
+  <div class="container py-5">
+    <div class="section-header">
+      <span class="section-eyebrow">Saved Works</span>
+      <h2 class="section-title">My <em>Wishlist</em></h2>
+    </div>
+    <div id="wishlistContent">
+      <div class="wishlist-empty"><i class="bi bi-heart" style="font-size:3rem;display:block;margin-bottom:1rem;color:rgba(201,168,76,.3)"></i>Your wishlist is empty</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= CART SECTION ============================= -->
+<div id="cart" class="page-section" style="padding-top:90px;background:var(--charcoal);min-height:100vh">
+  <div class="container py-5">
+    <div class="section-header">
+      <span class="section-eyebrow">Your Selection</span>
+      <h2 class="section-title">Shopping <em>Cart</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div id="cartItems"><div class="wishlist-empty"><i class="bi bi-bag" style="font-size:3rem;display:block;margin-bottom:1rem;color:rgba(201,168,76,.3)"></i>Your cart is empty</div></div>
+      </div>
+      <div class="col-lg-4">
+        <div class="order-summary">
+          <div class="order-summary-title">Order Summary</div>
+          <div class="order-line"><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
+          <div class="order-line"><span>Insurance</span><span>$0</span></div>
+          <div class="order-line"><span>Shipping</span><span style="color:var(--gold)">Calculated at checkout</span></div>
+          <div class="order-total"><span>Total</span><span id="cartTotal">$0</span></div>
+          <button class="btn-gold w-100 py-3 mt-3" onclick="showSection('checkout')">Proceed to Checkout</button>
+          <button class="btn-gold-outline w-100 py-2 mt-2" onclick="showSection('collections')">Continue Browsing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= CHECKOUT SECTION ============================= -->
+<div id="checkout" class="page-section" style="padding-top:90px;background:var(--charcoal);min-height:100vh">
+  <div class="container py-5">
+    <div class="section-header">
+      <span class="section-eyebrow">Secure Checkout</span>
+      <h2 class="section-title">Complete <em>Purchase</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="glass-card p-4 mb-4">
+          <h3 class="footer-heading mb-3">Billing Details</h3>
+          <form class="luxury-form">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">First Name</label><input type="text" class="form-control"/></div>
+              <div class="col-md-6"><label class="form-label">Last Name</label><input type="text" class="form-control"/></div>
+              <div class="col-12"><label class="form-label">Address</label><input type="text" class="form-control"/></div>
+              <div class="col-md-6"><label class="form-label">City</label><input type="text" class="form-control"/></div>
+              <div class="col-md-3"><label class="form-label">State</label><input type="text" class="form-control"/></div>
+              <div class="col-md-3"><label class="form-label">PIN</label><input type="text" class="form-control"/></div>
+              <div class="col-12"><label class="form-label">Country</label><select class="form-select"><option>India</option><option>USA</option><option>UK</option><option>UAE</option></select></div>
+            </div>
+          </form>
+        </div>
+        <div class="glass-card p-4">
+          <h3 class="footer-heading mb-3">Payment Details</h3>
+          <form id="checkoutPaymentForm" class="luxury-form">
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="d-flex gap-2 mb-3">
+                  <label style="flex:1;cursor:pointer"><input type="radio" name="payment" value="card" checked style="accent-color:var(--gold)"/> <span style="font-size:.78rem;color:var(--smoke);margin-left:.4rem">Credit / Debit Card</span></label>
+                  <label style="flex:1;cursor:pointer"><input type="radio" name="payment" value="upi" style="accent-color:var(--gold)"/> <span style="font-size:.78rem;color:var(--smoke);margin-left:.4rem">UPI</span></label>
+                  <label style="flex:1;cursor:pointer"><input type="radio" name="payment" value="bank" style="accent-color:var(--gold)"/> <span style="font-size:.78rem;color:var(--smoke);margin-left:.4rem">Bank Transfer</span></label>
+                </div>
+              </div>
+              <div id="cardPaymentFields" class="col-12">
+                <label class="form-label">Card Number</label><input type="text" id="cardNumber" class="form-control" placeholder="•••• •••• •••• ••••"/>
+              </div>
+              <div id="cardPaymentExpiry" class="col-md-6">
+                <label class="form-label">Expiry</label><input type="text" id="cardExpiry" class="form-control" placeholder="MM / YY"/>
+              </div>
+              <div id="cardPaymentCvv" class="col-md-6">
+                <label class="form-label">CVV</label><input type="text" id="cardCvv" class="form-control" placeholder="•••"/>
+              </div>
+              <div id="upiPaymentFields" class="col-12" style="display:none;">
+                <div class="glass-card p-3" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);">
+                  <div class="mb-3" style="font-size:.95rem;color:var(--ivory)">Scan the QR code in your UPI app or use the UPI ID below to complete payment.</div>
+                  <div style="display:flex;justify-content:center;align-items:center;margin-bottom:1rem;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=galleryx@upi&pn=GalleryX&am=48590&tr=GX-2025-00847" alt="UPI QR Code" style="width:220px;height:220px;border-radius:1rem;border:3px solid var(--gold)"/>
+                  </div>
+                  <div style="text-align:center;color:var(--smoke);font-size:.88rem;">UPI ID: <strong style="color:var(--ivory)">galleryx@upi</strong></div>
+                  <div style="text-align:center;color:var(--smoke);font-size:.88rem;margin-top:.5rem;">Pay with Google Pay, PhonePe, Paytm, or your preferred UPI app.</div>
+                </div>
+              </div>
+              <div id="bankPaymentFields" class="col-12" style="display:none;">
+                <div class="glass-card p-3" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);">
+                  <div style="font-size:.95rem;color:var(--ivory);margin-bottom:.75rem">Use the details below to complete your bank transfer.</div>
+                  <div style="font-size:.88rem;color:var(--smoke);line-height:1.7;">
+                    Bank: <strong style="color:var(--ivory)">Artistry Bank</strong><br/>
+                    Account: <strong style="color:var(--ivory)">1234567890</strong><br/>
+                    IFSC: <strong style="color:var(--ivory)">ARTI0001234</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12"><button type="button" id="confirmPaymentBtn" class="btn-gold w-100 py-3" data-bs-toggle="modal" data-bs-target="#paymentSuccessModal">Confirm &amp; Pay</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="order-summary">
+          <div class="order-summary-title">Order Summary</div>
+          <div style="font-size:.78rem;color:var(--smoke)">
+            <div class="order-line"><span>Cascade of Dreams</span><span>$48,000</span></div>
+            <div class="order-line"><span>Insurance (0.5%)</span><span>$240</span></div>
+            <div class="order-line"><span>White-glove delivery</span><span>$350</span></div>
+            <div class="order-line"><span>Authentication cert.</span><span style="color:var(--gold)">Included</span></div>
+          </div>
+          <div class="order-total"><span>Total</span><span>$48,590</span></div>
+          <div class="mt-3 d-flex flex-column gap-2">
+            <div class="payment-step"><i class="bi bi-shield-check"></i><span>SSL Encrypted Checkout</span></div>
+            <div class="payment-step"><i class="bi bi-award"></i><span>Certificate Included</span></div>
+            <div class="payment-step"><i class="bi bi-truck"></i><span>White-Glove Delivery</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= DASHBOARD SECTION ============================= -->
+<div id="dashboard" class="page-section" style="padding-top:90px;background:var(--charcoal);min-height:100vh">
+  <div class="container py-5">
+    <div class="section-header">
+      <span class="section-eyebrow">My Account</span>
+      <h2 class="section-title">Collector <em>Dashboard</em></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3">
+        <div class="dashboard-sidebar">
+          <div class="text-center mb-3">
+            <img src="https://i.pravatar.cc/80?img=12" style="width:70px;height:70px;border-radius:50%;border:2px solid rgba(201,168,76,.4)" alt=""/>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ivory);margin-top:.6rem">James Harrington</div>
+            <div style="font-size:.7rem;color:var(--gold)">Gold Collector</div>
+          </div>
+          <div class="luxury-divider"><div class="luxury-divider-dot"></div></div>
+          <div class="dashboard-nav-item active" onclick="switchDashTab('profile',this)"><i class="bi bi-person"></i>Profile</div>
+          <div class="dashboard-nav-item" onclick="switchDashTab('purchases',this)"><i class="bi bi-bag-check"></i>Purchases</div>
+          <div class="dashboard-nav-item" onclick="switchDashTab('rentals',this)"><i class="bi bi-calendar-check"></i>Rentals</div>
+          <div class="dashboard-nav-item" onclick="switchDashTab('wishlistDash',this)"><i class="bi bi-heart"></i>Wishlist</div>
+          <div class="dashboard-nav-item" onclick="switchDashTab('settings',this)"><i class="bi bi-gear"></i>Settings</div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="dashboard-content">
+          <!-- PROFILE TAB -->
+          <div id="tabProfile">
+            <h3 class="footer-heading mb-3">Account Overview</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-3"><div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Owned</div></div></div>
+              <div class="col-md-3"><div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Rented</div></div></div>
+              <div class="col-md-3"><div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Wishlist</div></div></div>
+              <div class="col-md-3"><div class="stat-card"><div class="stat-num" style="font-size:1.5rem">Gold</div><div class="stat-label">Tier</div></div></div>
+            </div>
+            <form class="luxury-form">
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label">Full Name</label><input type="text" class="form-control" value="James Harrington"/></div>
+                <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control" value="james@harrington.com"/></div>
+                <div class="col-md-6"><label class="form-label">Phone</label><input type="tel" class="form-control" value="+1 917 555 0123"/></div>
+                <div class="col-md-6"><label class="form-label">Location</label><input type="text" class="form-control" value="New York, USA"/></div>
+                <div class="col-12"><button type="button" class="btn-gold px-4 py-2">Save Changes</button></div>
+              </div>
+            </form>
+          </div>
+          <!-- PURCHASES TAB -->
+          <div id="tabPurchases" style="display:none">
+            <h3 class="footer-heading mb-3">Purchase History</h3>
+            <div class="table-responsive">
+              <table class="table luxury-table">
+                <thead><tr><th>Artwork</th><th>Artist</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Cascade of Dreams</td><td>Elena Vasiliev</td><td>Mar 2024</td><td class="text-gold">$48,000</td><td><span class="badge" style="background:rgba(201,168,76,.15);color:var(--gold);font-size:.65rem">Delivered</span></td></tr>
+                  <tr><td>Midnight Baroque</td><td>Aiko Tanaka</td><td>Nov 2023</td><td class="text-gold">$91,000</td><td><span class="badge" style="background:rgba(201,168,76,.15);color:var(--gold);font-size:.65rem">Delivered</span></td></tr>
+                  <tr><td>Silent Storm</td><td>Marco Bellini</td><td>Jul 2023</td><td class="text-gold">$24,500</td><td><span class="badge" style="background:rgba(201,168,76,.15);color:var(--gold);font-size:.65rem">Delivered</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- RENTALS TAB -->
+          <div id="tabRentals" style="display:none">
+            <h3 class="footer-heading mb-3">Rental History</h3>
+            <div class="table-responsive">
+              <table class="table luxury-table">
+                <thead><tr><th>Artwork</th><th>Artist</th><th>Period</th><th>Monthly</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Velvet Horizon</td><td>Elena Vasiliev</td><td>Jan–Mar 2024</td><td class="text-gold">$520</td><td><span class="badge" style="background:rgba(100,200,100,.1);color:#8fd;font-size:.65rem">Active</span></td></tr>
+                  <tr><td>Solitude in Gold</td><td>Marco Bellini</td><td>Oct–Dec 2023</td><td class="text-gold">$625</td><td><span class="badge" style="background:rgba(201,168,76,.08);color:var(--smoke);font-size:.65rem">Returned</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- WISHLIST TAB -->
+          <div id="tabWishlistDash" style="display:none">
+            <h3 class="footer-heading mb-3">Saved Artworks</h3>
+            <div id="dashWishlistContent"><div style="color:var(--smoke);font-size:.85rem">Nothing saved yet.</div></div>
+          </div>
+          <!-- SETTINGS TAB -->
+          <div id="tabSettings" style="display:none">
+            <h3 class="footer-heading mb-3">Preferences</h3>
+            <form class="luxury-form">
+              <div class="row g-3">
+                <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="chk1" checked/><label class="form-check-label" for="chk1">Email notifications for new arrivals</label></div></div>
+                <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="chk2" checked/><label class="form-check-label" for="chk2">SMS alerts for wishlist price changes</label></div></div>
+                <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="chk3"/><label class="form-check-label" for="chk3">Newsletter subscription</label></div></div>
+                <div class="col-md-6"><label class="form-label">Preferred Currency</label><select class="form-select"><option>INR ₹</option><option selected>USD $</option><option>EUR €</option><option>GBP £</option></select></div>
+                <div class="col-12"><button type="button" class="btn-gold px-4 py-2">Save Preferences</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= FOOTER ============================= -->
+<footer>
+  <div class="container">
+    <div class="row g-5 mb-4">
+      <div class="col-lg-4">
+        <div class="footer-brand">GALLERYX</div>
+        <div class="footer-tagline">Curated Art · Exclusive Collections · Timeless Creativity</div>
+        <p style="color:var(--smoke);font-size:.8rem;margin-top:1rem;line-height:1.8">Bringing the world's finest art directly to collectors and enthusiasts. Authenticated, insured, and delivered with care.</p>
+        <div class="mt-1.5">
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-pinterest"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="footer-heading">Explore</div>
+        <a href="#" class="footer-link" onclick="showSection('collections')">Collections</a>
+        <a href="#" class="footer-link" onclick="showSection('artists')">Artists</a>
+        <a href="#" class="footer-link" onclick="showSection('buy')">Buy Art</a>
+        <a href="#" class="footer-link" onclick="showSection('rent')">Rent Art</a>
+        <a href="#" class="footer-link" onclick="showSection('about')">About Us</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="footer-heading">Support</div>
+        <a href="#" class="footer-link">Authenticity</a>
+        <a href="#" class="footer-link">Shipping Policy</a>
+        <a href="#" class="footer-link">Returns</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+      </div>
+      <div class="col-lg-4">
+        <div class="footer-heading">Contact & Hours</div>
+        <div class="footer-contact-item"><i class="bi bi-geo-alt footer-contact-icon"></i><span>14 Rue de l'Art, Level 5, Mumbai 400001</span></div>
+        <div class="footer-contact-item"><i class="bi bi-telephone footer-contact-icon"></i><span>+91 22 4000 8888</span></div>
+        <div class="footer-contact-item"><i class="bi bi-envelope footer-contact-icon"></i><span>concierge@galleryx.art</span></div>
+        <div class="footer-contact-item"><i class="bi bi-clock footer-contact-icon"></i><span>Tue–Sun · 10:00 AM – 7:00 PM IST</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span style="color:var(--dark-5)">© 2025 GALLERYX. All rights reserved.</span>
+      <span class="mx-2" style="color:rgba(201,168,76,.3)">·</span>
+      <span style="color:rgba(201,168,76,.4)">Curated Art · Exclusive Collections · Timeless Creativity</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== MODALS ===== -->
+
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Welcome Back</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-3">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ivory);font-style:italic">Sign in to your account</div>
+        </div>
+        <form class="luxury-form" onsubmit="loginSubmit(event)">
+          <div class="mb-3"><label class="form-label">Email Address</label><input id="loginEmail" name="loginEmail" type="email" class="form-control" placeholder="collector@example.com" required/></div>
+          <div class="mb-3"><label class="form-label">Password</label><input id="loginPassword" name="loginPassword" type="password" class="form-control" placeholder="••••••••" required/></div>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="rememberMe"/><label class="form-check-label" for="rememberMe">Remember me</label></div>
+            <a href="#" style="font-size:.75rem;color:var(--gold);text-decoration:none">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn-gold w-100 py-3">Sign In</button>
+        </form>
+        <div class="luxury-divider mt-3"><div class="luxury-divider-dot"></div></div>
+        <p style="text-align:center;font-size:.78rem;color:var(--smoke)">New to GALLERYX? <a href="#" style="color:var(--gold);text-decoration:none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#signupModal">Create Account</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal fade" id="signupModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Join GALLERYX</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form class="luxury-form" onsubmit="signupSubmit(event)">
+          <div class="mb-3"><label class="form-label">Full Name</label><input id="signupName" name="signupName" type="text" class="form-control" placeholder="Your full name" required/></div>
+          <div class="mb-3"><label class="form-label">Email Address</label><input id="signupEmail" name="signupEmail" type="email" class="form-control" placeholder="collector@example.com" required/></div>
+          <div class="mb-3"><label class="form-label">Phone Number</label><input id="signupPhone" name="signupPhone" type="tel" class="form-control" placeholder="+91 98765 43210"/></div>
+          <div class="mb-3"><label class="form-label">Password</label><input id="signupPassword" name="signupPassword" type="password" class="form-control" placeholder="••••••••" required/></div>
+          <div class="mb-4">
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="termsCheck"/><label class="form-check-label" for="termsCheck">I agree to the <a href="#" style="color:var(--gold);text-decoration:none">Terms & Privacy Policy</a></label></div>
+          </div>
+          <button type="submit" class="btn-gold w-100 py-3">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INQUIRY MODAL -->
+<div class="modal fade" id="inquiryModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Private Inquiry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--smoke);margin-bottom:1.5rem">For exclusive commissions, private collections, or bespoke requests:</p>
+        <form class="luxury-form" onsubmit="inquirySubmit(event)">
+          <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" placeholder="Your name"/></div>
+          <div class="mb-3"><label class="form-label">Phone Number</label><input type="tel" class="form-control" placeholder="+91 98765 43210"/></div>
+          <div class="mb-3"><label class="form-label">Preferred Artwork or Artist</label><input type="text" class="form-control" placeholder="Artwork name or artist..."/></div>
+          <div class="mb-4"><label class="form-label">Your Inquiry</label><textarea class="form-control" rows="4" placeholder="Describe your interest..."></textarea></div>
+          <button type="submit" class="btn-gold w-100 py-3">Submit Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RENTAL MODAL -->
+<div class="modal fade" id="rentalModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rent This Artwork</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-4" style="background:rgba(255,255,255,.05);padding:1rem;border-radius:1rem;">
+          <h6 style="color:var(--gold);margin-bottom:.75rem">Rental Benefits</h6>
+          <ul style="list-style:inside disc;line-height:1.7;color:var(--smoke);margin:0;padding:0 0 0 1rem;font-size:.95rem;">
+            <li>Flexible rental periods from 1 to 12 months</li>
+            <li>White-glove delivery and collection included</li>
+            <li>Art handling insurance and installation support</li>
+            <li>Certificate of authenticity and condition report provided</li>
+          </ul>
+        </div>
+        <form class="luxury-form" onsubmit="submitRentalModal(event)">
+          <div class="mb-3"><label class="form-label">Artwork</label><input type="text" class="form-control" id="rentalArtworkName" readonly/></div>
+          <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" placeholder="Your name"/></div>
+          <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="collector@example.com"/></div>
+          <div class="mb-3"><label class="form-label">Phone</label><input type="tel" class="form-control" placeholder="+91..."/></div>
+          <div class="row g-3">
+            <div class="col-md-6 mb-3"><label class="form-label">Duration</label>
+              <select class="form-select">
+                <option>1 Month</option><option>3 Months</option><option>6 Months</option><option>12 Months</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3"><label class="form-label">Start Date</label><input type="date" class="form-control"/></div>
+          </div>
+          <div class="mb-3"><label class="form-label">Delivery Address</label><input type="text" class="form-control" placeholder="Street, city, ZIP"/></div>
+          <div class="mb-3"><label class="form-label">Installation Preference</label>
+            <select class="form-select">
+              <option>Standard placement only</option>
+              <option>Full installation service</option>
+              <option>Virtual placement guidance</option>
+            </select>
+          </div>
+          <div class="mb-4"><label class="form-label">Special Requests</label><textarea class="form-control" rows="3" placeholder="Any additional details or requirements..."></textarea></div>
+          <button type="submit" class="btn-gold w-100 py-3">Confirm Rental Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT SUCCESS MODAL -->
+<div class="modal fade" id="paymentSuccessModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center py-5">
+        <div class="success-icon mb-3"><i class="bi bi-check-lg"></i></div>
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:.2em;margin-bottom:.5rem">PAYMENT SUCCESSFUL</h3>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ivory);font-style:italic;margin-bottom:1.5rem">Your artwork is secured</p>
+        <div class="order-summary text-start mb-3">
+          <div class="order-line"><span>Transaction ID</span><span style="color:var(--ivory);font-size:.78rem">GX-2025-00847</span></div>
+          <div class="order-line"><span>Artwork</span><span style="color:var(--ivory);font-size:.78rem">Cascade of Dreams</span></div>
+          <div class="order-line"><span>Amount</span><span style="color:var(--gold)">$48,590</span></div>
+          <div class="order-line"><span>Delivery</span><span style="color:var(--ivory);font-size:.78rem">7–14 Business Days</span></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--smoke);margin-bottom:1.5rem">A confirmation and certificate of authenticity have been sent to your email.</p>
+        <button class="btn-gold px-5 py-2" data-bs-dismiss="modal" onclick="showSection('dashboard')">View Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ==================== DATA ====================
+const API_BASE = 'http://localhost:5000';
+const artworks = [
+  {id:1,title:'Cascade of Dreams',artist:'Elena Vasiliev',category:'Abstract',img:'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=80',price:48000,rent:480,badge:'featured',type:'both'},
+  {id:2,title:'Solitude in Gold',artist:'Marco Bellini',category:'Contemporary',img:'https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=600&q=80',price:62500,rent:625,badge:'new',type:'both'},
+  {id:3,title:'Midnight Baroque',artist:'Aiko Tanaka',category:'Impressionism',img:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80',price:91000,rent:910,badge:'featured',type:'both'},
+  {id:4,title:'Eternal Bloom',artist:'Seun Adeyemi',category:'Sculpture',img:'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80',price:33800,rent:338,badge:'',type:'both'},
+  {id:5,title:'Velvet Horizon',artist:'Elena Vasiliev',category:'Abstract',img:'https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=600&q=80',price:52000,rent:520,badge:'new',type:'both'},
+  {id:6,title:'Crimson Tide',artist:'Priya Nair',category:'Photography',img:'https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&q=80',price:29000,rent:290,badge:'',type:'both'},
+  {id:7,title:'Silent Storm',artist:'Marco Bellini',category:'Contemporary',img:'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80',price:24500,rent:245,badge:'',type:'buy'},
+  {id:8,title:'Floral Epoch',artist:'Seun Adeyemi',category:'Abstract',img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80',price:17800,rent:178,badge:'',type:'both'},
+  {id:9,title:'Digital Reverie',artist:'Luca Ferrara',category:'Digital Art',img:'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80',price:9500,rent:95,badge:'new',type:'both'},
+];
+
+let wishlistItems = [];
+let cartItems = [];
+
+// ==================== CARD RENDERER ====================
+function renderCard(art) {
+  const wishlisted = wishlistItems.some(w => w.id === art.id);
+  const badge = art.badge ? `<span class="art-badge badge-${art.badge}">${art.badge}</span>` : '';
+  return `
+  <div class="col-lg-4 col-md-6 art-card-col" data-category="${art.category}" data-artist="${art.artist}" data-price="${art.price}" data-type="${art.type}">
+    <div class="art-card h-100">
+      <div class="art-card-img-wrap">
+        ${badge}
+        <img src="${art.img}" alt="${art.title}" loading="lazy"/>
+        <div class="art-card-overlay">
+          <button class="wishlist-btn ${wishlisted?'active':''}" onclick="toggleWishlist(${art.id},this)" title="Wishlist">
+            <i class="bi bi-heart${wishlisted?'-fill':''}"></i>
+          </button>
+          <button class="wishlist-btn" onclick="quickView(${art.id})" title="Quick View">
+            <i class="bi bi-eye"></i>
+          </button>
+        </div>
+      </div>
+      <div class="art-card-body">
+        <div class="art-category">${art.category}</div>
+        <div class="art-title">${art.title}</div>
+        <div class="art-artist">by ${art.artist}</div>
+        <div class="art-prices">
+          <div class="art-buy-price"><div class="label">Buy</div><div class="value">$${art.price.toLocaleString()}</div></div>
+          <div class="art-rent-price"><div class="label">Rent/mo</div><div class="value">$${art.rent.toLocaleString()}</div></div>
+        </div>
+        <div class="art-card-actions">
+          <button class="btn-gold" onclick="addToCart('${art.title}','${art.artist}',${art.price},'${art.img}')">Buy</button>
+          <button class="btn-gold-outline" onclick="openRental('${art.title}')">Rent</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function populateGrids() {
+  document.getElementById('artGrid').innerHTML = artworks.map(renderCard).join('');
+  document.getElementById('buyGrid').innerHTML = artworks.map(renderCard).join('');
+}
+populateGrids();
+
+// ==================== SECTION NAVIGATION ====================
+function showSection(id) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if(target) { target.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const navLink = document.querySelector(`.nav-link[onclick*="${id}"]`);
+  if(navLink) navLink.classList.add('active');
+  const bsCollapse = document.getElementById('navMenu');
+  if(bsCollapse.classList.contains('show')) new bootstrap.Collapse(bsCollapse).hide();
+  triggerAOS();
+}
+
+// ==================== WISHLIST ====================
+function toggleWishlist(id, btn) {
+  const art = artworks.find(a => a.id === id);
+  const idx = wishlistItems.findIndex(w => w.id === id);
+  if(idx === -1) {
+    wishlistItems.push(art);
+    btn.classList.add('active');
+    btn.innerHTML = '<i class="bi bi-heart-fill"></i>';
+    showToast('Added to wishlist: ' + art.title);
+  } else {
+    wishlistItems.splice(idx,1);
+    btn.classList.remove('active');
+    btn.innerHTML = '<i class="bi bi-heart"></i>';
+    showToast('Removed from wishlist');
+  }
+  document.getElementById('wishlistCount').textContent = wishlistItems.length;
+  renderWishlist();
+}
+
+function renderWishlist() {
+  const container = document.getElementById('wishlistContent');
+  const dashContainer = document.getElementById('dashWishlistContent');
+  if(wishlistItems.length === 0) {
+    container.innerHTML = '<div class="wishlist-empty"><i class="bi bi-heart" style="font-size:3rem;display:block;margin-bottom:1rem;color:rgba(201,168,76,.3)"></i>Your wishlist is empty</div>';
+    if(dashContainer) dashContainer.innerHTML = '<div style="color:var(--smoke);font-size:.85rem">Nothing saved yet.</div>';
+    return;
+  }
+  const html = '<div class="row g-4">' + wishlistItems.map(art => renderCard(art)).join('') + '</div>';
+  container.innerHTML = html;
+  if(dashContainer) dashContainer.innerHTML = html;
+}
+
+// ==================== CART ====================
+function addToCart(title, artist, price, img) {
+  const existing = cartItems.find(c => c.title === title);
+  if(existing) { existing.qty++; }
+  else { cartItems.push({title,artist,price,img:img||'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=200&q=60',qty:1}); }
+  document.getElementById('cartCount').textContent = cartItems.reduce((s,c)=>s+c.qty,0);
+  renderCart();
+  showToast('Added to cart: ' + title);
+}
+
+function renderCart() {
+  const container = document.getElementById('cartItems');
+  if(cartItems.length === 0) {
+    container.innerHTML = '<div class="wishlist-empty"><i class="bi bi-bag" style="font-size:3rem;display:block;margin-bottom:1rem;color:rgba(201,168,76,.3)"></i>Your cart is empty</div>';
+    document.getElementById('cartSubtotal').textContent = '$0';
+    document.getElementById('cartTotal').textContent = '$0';
+    return;
+  }
+  container.innerHTML = cartItems.map((item,i) => `
+    <div class="cart-item">
+      <img src="${item.img}" class="cart-item-img" alt="${item.title}"/>
+      <div style="flex:1">
+        <div class="cart-item-title">${item.title}</div>
+        <div class="cart-item-artist">by ${item.artist}</div>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-top:.5rem">
+          <div class="qty-btn" onclick="changeQty(${i},-1)">−</div>
+          <div class="qty-value">${item.qty}</div>
+          <div class="qty-btn" onclick="changeQty(${i},1)">+</div>
+          <button onclick="removeCartItem(${i})" style="background:none;border:none;color:var(--smoke);font-size:.75rem;margin-left:auto;cursor:pointer">Remove</button>
+        </div>
+      </div>
+      <div class="cart-item-price">$${(item.price*item.qty).toLocaleString()}</div>
+    </div>`).join('');
+  const total = cartItems.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('cartSubtotal').textContent = '$'+total.toLocaleString();
+  document.getElementById('cartTotal').textContent = '$'+total.toLocaleString();
+}
+
+function changeQty(i,d){
+  cartItems[i].qty = Math.max(1,cartItems[i].qty+d);
+  document.getElementById('cartCount').textContent = cartItems.reduce((s,c)=>s+c.qty,0);
+  renderCart();
+}
+function removeCartItem(i){
+  cartItems.splice(i,1);
+  document.getElementById('cartCount').textContent = cartItems.reduce((s,c)=>s+c.qty,0);
+  renderCart();
+}
+
+// ==================== RENTAL MODAL ====================
+function openRental(name) {
+  document.getElementById('rentalArtworkName').value = name;
+  new bootstrap.Modal(document.getElementById('rentalModal')).show();
+}
+
+// ==================== FILTERS ====================
+function toggleChip(el) {
+  document.querySelectorAll('.chip-filter').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const val = el.textContent;
+  document.querySelectorAll('.art-card-col').forEach(col => {
+    if(val === 'All' || col.dataset.category === val || (val === 'New Arrivals' && col.querySelector('.badge-new'))) {
+      col.style.display='';
+    } else { col.style.display='none'; }
+  });
+}
+
+document.getElementById('searchInput')?.addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.art-card-col').forEach(col => {
+    const title = col.querySelector('.art-title')?.textContent.toLowerCase() || '';
+    const artist = col.querySelector('.art-artist')?.textContent.toLowerCase() || '';
+    col.style.display = (title.includes(q) || artist.includes(q)) ? '' : 'none';
+  });
+});
+
+// ==================== DASHBOARD TABS ====================
+function switchDashTab(name, el) {
+  ['Profile','Purchases','Rentals','WishlistDash','Settings'].forEach(t => {
+    const el = document.getElementById('tab'+t);
+    if(el) el.style.display = 'none';
+  });
+  const tab = document.getElementById('tab'+name.charAt(0).toUpperCase()+name.slice(1));
+  if(tab) tab.style.display = '';
+  document.querySelectorAll('.dashboard-nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ==================== TOAST ====================
+function showToast(msg) {
+  document.getElementById('toastMsg').textContent = msg;
+  const t = new bootstrap.Toast(document.getElementById('wishlistToast'), {delay:2500});
+  t.show();
+}
+
+// ==================== FORM SUBMITS ====================
+async function loginSubmit(e){
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  try {
+    const res = await fetch(`${API_BASE}/api/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Login failed');
+    showToast(`Welcome back, ${data.user.name}!`);
+    bootstrap.Modal.getInstance(document.getElementById('loginModal'))?.hide();
+  } catch (error) {
+    showToast(error.message);
+  }
+}
+
+async function signupSubmit(e){
+  e.preventDefault();
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const phone = document.getElementById('signupPhone').value.trim();
+  const password = document.getElementById('signupPassword').value;
+
+  try {
+    const res = await fetch(`${API_BASE}/api/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Signup failed');
+    showToast(`Account created, welcome ${data.user.name}!`);
+    bootstrap.Modal.getInstance(document.getElementById('signupModal'))?.hide();
+  } catch (error) {
+    showToast(error.message);
+  }
+}
+
+function inquirySubmit(e){e.preventDefault();showToast('Inquiry submitted. Our team will contact you shortly.');bootstrap.Modal.getInstance(document.getElementById('inquiryModal'))?.hide()}
+function submitRental(e){e.preventDefault();showToast('Rental enquiry submitted!')}
+function submitContact(e){e.preventDefault();showToast('Message sent. We\'ll be in touch soon.')}
+function submitRentalModal(e){e.preventDefault();showToast('Rental request submitted!');bootstrap.Modal.getInstance(document.getElementById('rentalModal'))?.hide()}
+function quickView(id){const a=artworks.find(x=>x.id===id);if(a)showToast('Viewing: '+a.title)}
+
+function updatePaymentFields() {
+  const paymentType = document.querySelector('input[name="payment"]:checked')?.value || 'card';
+  document.getElementById('cardPaymentFields').style.display = paymentType === 'card' ? '' : 'none';
+  document.getElementById('cardPaymentExpiry').style.display = paymentType === 'card' ? '' : 'none';
+  document.getElementById('cardPaymentCvv').style.display = paymentType === 'card' ? '' : 'none';
+  document.getElementById('upiPaymentFields').style.display = paymentType === 'upi' ? '' : 'none';
+  document.getElementById('bankPaymentFields').style.display = paymentType === 'bank' ? '' : 'none';
+}
+
+function confirmPayment() {
+  const paymentType = document.querySelector('input[name="payment"]:checked')?.value || 'card';
+  const total = document.getElementById('cartTotal')?.textContent || '$48,590';
+  const methodText = paymentType === 'card' ? 'Card payment' : paymentType === 'upi' ? 'UPI payment' : 'Bank transfer';
+  const modal = document.getElementById('paymentSuccessModal');
+  const summary = modal.querySelector('.order-summary');
+  if (summary) {
+    summary.querySelectorAll('.order-line')[0].querySelector('span:last-child').textContent = 'GX-2025-00847';
+    summary.querySelectorAll('.order-line')[1].querySelector('span:last-child').textContent = 'Cascade of Dreams';
+    summary.querySelectorAll('.order-line')[2].querySelector('span:last-child').textContent = total;
+  }
+  showToast(`${methodText} confirmed successfully.`);
+}
+
+function attachPaymentHandlers() {
+  document.querySelectorAll('input[name="payment"]').forEach(input => input.addEventListener('change', updatePaymentFields));
+  updatePaymentFields();
+  document.getElementById('confirmPaymentBtn')?.addEventListener('click', confirmPayment);
+}
+
+attachPaymentHandlers();
+
+// ==================== NAVBAR SCROLL ====================
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ==================== CURSOR ====================
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+function animateRing(){rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateRing);}
+animateRing();
+document.querySelectorAll('a,button,.art-card,.gallery-item,.wishlist-btn,.chip-filter').forEach(el => {
+  el.addEventListener('mouseenter',()=>{cursor.style.width='18px';cursor.style.height='18px';ring.style.width='52px';ring.style.height='52px'});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='36px';ring.style.height='36px'});
+});
+
+// ==================== AOS (SCROLL ANIMATE) ====================
+function triggerAOS() {
+  setTimeout(() => {
+    document.querySelectorAll('.aos-fade,.aos-fade-left,.aos-fade-right').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 100);
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:.12});
+document.querySelectorAll('.aos-fade,.aos-fade-left,.aos-fade-right').forEach(el => observer.observe(el));
+
+// ==================== INIT ====================
+triggerAOS();
+</script>
+</body>
+</html>
